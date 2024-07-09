@@ -2,8 +2,6 @@ local txAdminPlayerKickedWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxx
 local txAdminPlayerWarnedWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 local txAdminPlayerBannedWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 local txAdminHealedPlayerWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-local txAdminAdminAuthWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-local txAdminPlayerDirectMessageWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 local txAdminActionRevokedWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 local txAdminWhitelistPlayerWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 local txAdminWhitelistPreApprovalWH = 'https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
@@ -49,15 +47,6 @@ end)
 AddEventHandler('txAdmin:events:healedPlayer', function(eventData)
     local description = eventData.id == -1 and "Whole server healed" or "Player ID: "..eventData.id.." healed"
     txAdminLog("Player Healed", description, txAdminHealedPlayerWH)
-end)
-
-AddEventHandler('txAdmin:events:adminAuth', function(eventData)
-    local description = eventData.isAdmin and "Admin Authenticated" or "Admin Permissions Revoked"
-    txAdminLog("Admin Authentication", '**Net ID:** '..eventData.netid..'\n**Is Admin:** '..tostring(eventData.isAdmin)..'\n**Username:** '..(eventData.username or ''), txAdminAdminAuthWH)
-end)
-
-AddEventHandler('txAdmin:events:playerDirectMessage', function(eventData)
-    txAdminLog("Player Direct Message", '**Author:** '..eventData.author..'\n**Target:** '..eventData.target..'\n**Message:** '..eventData.message, txAdminPlayerDirectMessageWH)
 end)
 
 AddEventHandler('txAdmin:events:actionRevoked', function(eventData)
