@@ -41,7 +41,11 @@ AddEventHandler('txAdmin:events:playerWarned', function(eventData)
 end)
 
 AddEventHandler('txAdmin:events:playerBanned', function(eventData)
-    txAdminLog("Player Banned", '**Author:** '..eventData.author..'\n**Target:** '..eventData.target..'\n**Action ID:** '..eventData.actionId..'\n**Expiration:** '..eventData.expiration..'\n**Duration Input:** '..eventData.durationInput..'\n**Duration Translated:** '..eventData.durationTranslated..'\n**Target Net ID:** '..eventData.targetNetId..'\n**Target IDs:** '..table.concat(eventData.targetIds, ', ')..'\n**Target HWIDs:** '..table.concat(eventData.targetHwids, ', ')..'\n**Target Name:** '..eventData.targetName..'\n**Kick Message:** '..eventData.kickMessage, txAdminPlayerBannedWH)
+    local durationTranslated = eventData.durationTranslated and eventData.durationTranslated or "Null"
+    local expiration = eventData.expiration and eventData.expiration or "Permanent Banned"
+    local target = eventData.target and eventData.target or "User"
+    local targetNetId = eventData.targetNetId and eventData.targetNetId or "Null"
+    txAdminLog("Player Banned", '**Author:** '..eventData.author..'\n**Target:** '..target..'\n**Action ID:** '..eventData.actionId..'\n**Expiration:** '..expiration..'\n**Duration Input:** '..eventData.durationInput..'\n**Duration Translated:** '..durationTranslated..'\n**Target Net ID:** '..targetNetId..'\n**Target IDs:** '..table.concat(eventData.targetIds, ', ')..'\n**Target HWIDs:** '..table.concat(eventData.targetHwids, ', ')..'\n**Target Name:** '..eventData.targetName..'\n**Kick Message:** '..eventData.kickMessage, txAdminPlayerBannedWH)
 end)
 
 AddEventHandler('txAdmin:events:healedPlayer', function(eventData)
